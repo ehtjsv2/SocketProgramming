@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<WinSock2.h>
+#pragma comment(lib,"ws2_32")
+
+int main() {
+	WSADATA wsadata;
+	WSAStartup(MAKEWORD(2, 2), &wsadata);//makeword(2,2)는 0x0202와 같다. 소켓버전이 2.2다->(2,2) 1.2이다->(1,2)
+	//구현
+	//wsadata속성분석
+	printf("wHighVersion:%#x\n", wsadata.wHighVersion); // 지금사용하는 윈속의 상위버전 출력
+	printf("wVersion%#x\n", wsadata.wVersion);
+	printf("szDescription:%s\n", wsadata.szDescription);
+	printf("szSystemStatus:%s\n", wsadata.szSystemStatus);
+	printf("iMaxSocket:%d\n", wsadata.iMaxSockets);
+	printf("iMaxUdpDg:%d\n", wsadata.iMaxUdpDg);
+	WSACleanup();
+}
+
+---------------------------------------------------------------------------------------------------------
+<분석>
+2행 : 윈속을 사용하기위한 헤더파일 추가
+3행 : ws2_32라는 동적링크라이브러리 사용하기위한 구문
+6행 : WSADATA 구조체 변수
+7행 : 윈속을 초기화하기위한 함수 윈속Startp(윈속2.2버전이기때문에 MAKEWORD(2,2)) // 성공시 0, 실패시 0이아닌 값 반환
+16행 : 윈속초기화된 라이브러리 해제( 스타트업과 클린업사이에서 작업.)
