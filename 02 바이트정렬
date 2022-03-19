@@ -1,3 +1,25 @@
+#include<stdio.h>
+#include<WinSock2.h>
+#pragma comment(lib,"ws2_32")
+
+main() {
+	WSADATA wsadata;
+	WSAStartup(MAKEWORD(2, 2), &wsadata);
+
+	unsigned int idata = 0x12345678; // 4바이트
+	unsigned short sdata = 0x1234;// 2바이트
+	printf("host = %#x network:%#x \n", idata, htonl(idata));
+	printf("host = %#x network:%#x \n", sdata, ntohs(sdata));
+
+	WSACleanup();
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------
+<분석>
+
+-------------------------------------------------------------------------------------------------------------------------------------
+<배운점>
+
 -Byte Order
  2바이트 이상의 데이터를 메모리에 표현할 때 저장하는 방법
 Big endian(빅 엔디안) - 높은주소부터 기록
