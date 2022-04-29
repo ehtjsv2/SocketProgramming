@@ -4,6 +4,10 @@
 > fork()함수의 리턴값은 부모프로세스에서는 자식프로세스의 PID(Process ID)가 들어가고
 > 자식프로세스에는 pork의 리턴값은 0이 들어간다.
 
+### pid_t란?
+> pid의 값을 저장하는 type이라는 의미다.<br/>
+> 시스템에 따라 pid값이 int가 아닐수가 있으므로 pid_t를 쓰는 것이 이식성면에서 좋다.
+
 # 코드
 > ![image](https://user-images.githubusercontent.com/79188587/165891102-6d9e6f37-3f65-42c7-b128-385e842aa077.png)
 
