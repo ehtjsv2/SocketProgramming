@@ -5,10 +5,10 @@
 > 자식프로세스에는 pork의 리턴값은 0이 들어간다.
 
 # 코드
-> ![image](https://user-images.githubusercontent.com/79188587/165889966-6da25582-cee1-4ce7-9f5e-3e5a8a8ba867.png)
+> ![image](https://user-images.githubusercontent.com/79188587/165890961-e320e9e2-ddf4-4a18-ae5b-4657cfe88c92.png)
 
 # 실행결과
->![image](https://user-images.githubusercontent.com/79188587/165889935-c1e70c17-c08e-4da6-8b48-9887d7acbb1c.png)
+> ![image](https://user-images.githubusercontent.com/79188587/165890916-71d4caee-208e-4a20-b212-119e924509f2.png)
 
 > 결과를 보면 child process가 출력한 문장의 위치가 프로세스가 끝난후 출력 된것을 볼 수 있다.
 > 이결과로보아 부모프로세스의 코드실행이 우선이라는 것을 알 수 있다.
