@@ -25,3 +25,8 @@ hello
   }
 '''
 end<br/>
+
+``` c
+int val = 10;
+printf(%s,"Hello, World!");
+```
