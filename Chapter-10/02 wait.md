@@ -27,6 +27,10 @@ hello
 end<br/>
 
 ``` c
-int val = 10;
-printf(%s,"Hello, World!");
+ int status;
+  wait(&status);
+  if(WIFEXITED(status)){  // 정상종료되었는가>?
+    puts("Nomal termination!");
+    printf("Child pass num: %d", WEXITSTATUS(status));  // 그렇다면 반환 값은?
+  }
 ```
