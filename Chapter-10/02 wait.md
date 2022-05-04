@@ -12,6 +12,7 @@
 > WEXISTATUS()는 자식프로세의 전달값을 반환 // Wait EXIT STATUS가 아닌가 추론,,<br/>
 
 ### 사용법
+how:
 
   int status;
   wait(&status);
@@ -20,4 +21,4 @@
     printf("Child pass num: %d", WEXITSTATUS(status));  // 그렇다면 반환 값은?
   }
   
-<
+end<br/>
