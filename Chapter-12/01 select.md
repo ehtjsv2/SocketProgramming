@@ -8,4 +8,9 @@
 > 3. FD_SET (fd_set형 변수에 전달된 파일 디스크립터 정보를 등록한다.)
 > 4. FD_CLR (fd_set형 변수에서 전달된 파일 디스크립터 정보를 삭제한다.)
 > 5. FD_ISSET (select함수의 호출결과를 확인하는 용도로사용, 전달된 파일 디스크립터에 변화된 정보가 있으면 양수반환)
-> 
+> 6. struct timeval 변수 (select의 타임 아웃을 설정하기 위한것. timeout.tv_sec와 timeout.tv_usec를 설정해야한다.) 
+
+#select()
+> * int select(int maxfd, fd_set *readset, fd_set *writeset, fd_set *exceptset, const struct timaval *timeout)
+> + maxfd - 검사 대상이 되는 파일 디스크립터의 수
+> + readset -
