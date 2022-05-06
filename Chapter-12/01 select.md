@@ -12,9 +12,9 @@
 
 #select()
 > * int select(int maxfd, fd_set *readset, fd_set *writeset, fd_set *exceptset, const struct timaval *timeout)
-> * maxfd - 검사 대상이 되는 파일 디스크립터의 수
-> * readset - 수신 데이터의 존재여부에 관심있는 파일 디스크립터
-> * writeset - 데이터의 전송 가능여부 에 관심있는 파일 디스크립터
-> * exceptset - 예외상황 발생여부에 관심있는 파일 디스크립터
-> * timeout - select함수가 무한정 블로킹에 빠지지않도록 타임아웃을 설정
-> * 반환값 - 오류는 -1, 타임아웃 시에는 0, 변화발생시 변화 발생한 파일디스크립터의 개수
+>   * maxfd - 검사 대상이 되는 파일 디스크립터의 수
+>   * readset - 수신 데이터의 존재여부에 관심있는 파일 디스크립터
+>   * writeset - 데이터의 전송 가능여부 에 관심있는 파일 디스크립터
+>   * exceptset - 예외상황 발생여부에 관심있는 파일 디스크립터
+>   * timeout - select함수가 무한정 블로킹에 빠지지않도록 타임아웃을 설정
+>   * 반환값 - 오류는 -1, 타임아웃 시에는 0, 변화발생시 변화 발생한 파일디스크립터의 개수
