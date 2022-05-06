@@ -18,3 +18,62 @@
 >   * exceptset - 예외상황 발생여부에 관심있는 파일 디스크립터
 >   * timeout - select함수가 무한정 블로킹에 빠지지않도록 타임아웃을 설정
 >   * 반환값 - 오류는 -1, 타임아웃 시에는 0, 변화발생시 변화 발생한 파일디스크립터의 개수
+
+## CODE
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/time.h>
+#include <sys/select.h>
+#define BUF_SIZE 30
+
+int main(int argc, char *argv[])
+{
+    int first =0;
+    fd_set reads, temps;
+    int result, str_len;
+    char buf[BUF_SIZE];
+    struct timeval timeout; 
+    
+    FD_ZERO(&reads);
+    FD_SET(0,&reads);
+    timeout.tv_sec=0;
+    timeout.tv_usec=0;
+    while(1){
+        fflush(stdout);
+        temps=reads;
+        result = select(1, &temps, 0, 0, &timeout);
+        if(result == -1)
+        {
+            puts("select() error!");
+            break;
+        }
+        else if(result == 0)
+        {
+            if(first==0)
+            {
+                first++;
+                printf("what do you want to drink?: ");
+                fflush(stdout);
+            }
+            else
+            {
+                puts("too late!! hurry up!");
+                printf("what do you want to drink?: ");
+                fflush(stdout);
+            }
+        }
+        else{
+            if(FD_ISSET(0,&temps))
+            {
+                str_len = read(0, buf, BUF_SIZE);
+                buf[str_len] = 0;
+                printf("ok, i wll serve you :%s",buf);
+            }
+        }
+        timeout.tv_sec=5;
+        timeout.tv_usec=0;
+    }
+}
+```
