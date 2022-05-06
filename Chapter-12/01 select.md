@@ -31,19 +31,21 @@
 int main(int argc, char *argv[])
 {
     int first =0;
-    fd_set reads, temps;
+    fd_set reads, temps; // fd_set형 변수선언
     int result, str_len;
     char buf[BUF_SIZE];
-    struct timeval timeout; 
+    struct timeval timeout; // timeout 변수선언
     
-    FD_ZERO(&reads);
-    FD_SET(0,&reads);
-    timeout.tv_sec=0;
+    FD_ZERO(&reads);    // fd_set형 변수 비트 0으로초기화
+    FD_SET(0,&reads);   // fd_set형 변수 reads중 0(consol Standard Input)에 관심을 가지겠다는 것.
+    timeout.tv_sec=0;   
     timeout.tv_usec=0;
     while(1){
         fflush(stdout);
-        temps=reads;
-        result = select(1, &temps, 0, 0, &timeout);
+        // select가 끝나고나면 변화가 생긴 파일 디스크립터위치를 제외한 모든비트는 0으로초기화 되기때문에
+        // 원본을 유지하기위해 복사의 과정을 거치고 select에는 복사본을 넣는다.
+        temps=reads;    
+        result = select(1, &temps, 0, 0, &timeout); // 검사할 fd는 1개 temp의 수신데이터여부에 관심 timeout
         if(result == -1)
         {
             puts("select() error!");
@@ -72,6 +74,7 @@ int main(int argc, char *argv[])
                 printf("ok, i wll serve you :%s",buf);
             }
         }
+        // select후에는 밑에 변수의 값이 타임아웃이 발생하기 까지 남았던 시간으로 바뀌기 때문에 select후에 반복설정 하게 해주어야한다.
         timeout.tv_sec=5;
         timeout.tv_usec=0;
     }
