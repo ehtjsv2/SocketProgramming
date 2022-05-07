@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     vec[1].iov_base = buf2; 
     vec[1].iov_len = 4;
 
-    str_len = writev(1, vec, 2); // 1(console 의 output 디스크립터), vec버퍼, 크기2
+    str_len = writev(1, vec, 2); // 1(console 의 standard output 디스크립터), vec버퍼, 크기2
     puts("");
     printf("Write bytes: %d\n",str_len);
 }
