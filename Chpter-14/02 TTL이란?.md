@@ -8,7 +8,7 @@
 > * Chpter9에서 설명한 소켓의 옵션설정으로 이루어진다.
 > * 관련 프로토콜 레벨은 IPPROTO_IP이고 옵션이름은 IP_MULTICAST_TTL이다.
 
-##### 만약 TTL을 64로 설정한다면..
+##### * 만약 TTL을 64로 설정한다면..
 ```c
 int send_sock;
 int time_live=64;
