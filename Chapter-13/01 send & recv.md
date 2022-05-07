@@ -53,13 +53,13 @@ int main(int argc, char *argv[])
 
     while(1)
     {
-        str_len = recv(recv_sock, buf, sizeof(buf)-1,MSG_PEEK|MSG_DONTWAIT);    
+        str_len = recv(recv_sock, buf, sizeof(buf)-1,MSG_PEEK|MSG_DONTWAIT);   //MSG_PEEK를 했으니 recv했지만 Buffer에 데이터는 그대로 남는다 
         if(str_len>0) break;
     }
     buf[str_len] = 0;
     printf("Buffering %d bytes: %s \n", str_len, buf);
 
-    str_len = recv(recv_sock, buf, sizeof(buf)-1,0);
+    str_len = recv(recv_sock, buf, sizeof(buf)-1,0);    // 0을 했으니 수신후 버퍼에서 수신데이터는 사라진다.
 
     buf[str_len] = 0;
     printf("Read again: %s\n",buf);
