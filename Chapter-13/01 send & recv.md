@@ -1,9 +1,12 @@
 ## What is send & recv
-
+> * 리눅스기반에서 이때까지 fd끼리 입출력에서 write와 read를 써왔다
+> * send & recv는 그것들과는 달리 옵션을 추가할 수 있다. 옵션매개변수에 0을하면 wrtie와 read와 같다.
 
 ## Option
+![image](https://user-images.githubusercontent.com/79188587/167240924-06656d03-2746-47f3-a82f-b1827701a271.png)
 
 ## CODE
+> * 
 ```c
 #include <stdio.h>
 #include <unistd.h>
