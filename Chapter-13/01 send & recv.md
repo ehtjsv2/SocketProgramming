@@ -4,9 +4,11 @@
 
 ## Option
 ![image](https://user-images.githubusercontent.com/79188587/167240924-06656d03-2746-47f3-a82f-b1827701a271.png)
+> * MSG_PEEK는 스택 과 큐를 공부할 때 peek()과 같다고 생각하면된다. 데이터를 받아오고 삭제하지않고 그대로 INPUT_BUFFER에 남아있다.
+> * MSG_DONTWAIT는 read같은 경우는 블로킹 상태에 빠질 수 있지만 recv에서 이 옵션을 넣어주면 Input_Buffer에 값이없으면 블로킹을 벗어난다.
 
 ## CODE
-> * 
+> * recv 코드만 올리겠다. (send 코드는 write로 "123"을 연결된 소켓에게 전송하는 코드이다)
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -16,7 +18,7 @@
 #include <arpa/inet.h>
 
 #define BUF_SIZE 30
-void error_handling(char *message)
+void error_handling(char *message) // error처리 함수
 {
     fputs(message,stderr);
     fputc('\n',stderr);
@@ -25,7 +27,7 @@ void error_handling(char *message)
 
 int main(int argc, char *argv[])
 {
-    int acpt_sock, recv_sock;
+    int acpt_sock, recv_sock;  
     struct sockaddr_in acpt_adr, recv_adr;
     int str_len, state;
     socklen_t recv_adr_sz;
@@ -36,8 +38,8 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    acpt_sock = socket(PF_INET, SOCK_STREAM, 0);
-    memset(&acpt_adr, 0, sizeof(acpt_adr));
+    acpt_sock = socket(PF_INET, SOCK_STREAM, 0); // 서버소켓과 같다
+    memset(&acpt_adr, 0, sizeof(acpt_adr)); 
     acpt_adr.sin_family = AF_INET;
     acpt_adr.sin_addr.s_addr = htonl(INADDR_ANY);
     acpt_adr.sin_port = htons(atoi(argv[1]));
@@ -47,11 +49,11 @@ int main(int argc, char *argv[])
     listen(acpt_sock, 5);
 
     recv_adr_sz = sizeof(recv_adr);
-    recv_sock = accept(acpt_sock, (struct sockaddr*)&recv_adr, &recv_adr_sz);
+    recv_sock = accept(acpt_sock, (struct sockaddr*)&recv_adr, &recv_adr_sz);   // send 소켓과 연결
 
     while(1)
     {
-        str_len = recv(recv_sock, buf, sizeof(buf)-1,MSG_PEEK|MSG_DONTWAIT);
+        str_len = recv(recv_sock, buf, sizeof(buf)-1,MSG_PEEK|MSG_DONTWAIT);    
         if(str_len>0) break;
     }
     buf[str_len] = 0;
