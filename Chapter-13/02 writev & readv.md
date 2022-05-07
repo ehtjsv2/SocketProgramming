@@ -6,7 +6,7 @@
 ```c
 ssize_t writev(int filedes, const struct iovec * iov, int iovcnt);
 ```
->   * filedes - 파일 디스크립터
+>   * filedes - 전송할 목적지 파일 디스크립터
 >   * iov - 구조체 iovec 배열 주소 값 전달
 >   * iovcnt - iov의 배열의 길이정보 전달
 
@@ -14,7 +14,10 @@ ssize_t writev(int filedes, const struct iovec * iov, int iovcnt);
 ```c
 ssize_t readv(int filedes, const struct iovec, int iovcnt);
 ```
-> * 
+> * filedes - 수신할 파일 디스크립터
+>  * iov - 구조체 iovec 배열 주소 값 전달
+>  * iovcnt - iov의 배열의 길이정보 전달
+ 
 
 ## struct iovec
 ```c
