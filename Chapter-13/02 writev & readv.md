@@ -10,6 +10,12 @@ ssize_t writev(int filedes, const struct iovec * iov, int iovcnt);
 >   * iov - 구조체 iovec 배열 주소 값 전달
 >   * iovcnt - iov의 배열의 길이정보 전달
 
+## readv
+```c
+ssize_t readv(int filedes, const struct iovec, int iovcnt);
+```
+> * 
+
 ## struct iovec
 ```c
 struct iovec
@@ -19,7 +25,7 @@ struct iovec
 }
 ```
 
-## CODE
+## CODE(writev)
 ```c
 #include <stdio.h>
 #include <sys/uio.h>
@@ -43,3 +49,30 @@ int main(int argc, char* argv[])
 ```
 ## 출력
 ![image](https://user-images.githubusercontent.com/79188587/167243254-fea9a944-9456-4912-affd-54be0cb0cf7f.png)
+
+## CODE(readv)
+```c
+#include <stdio.h>
+#include <sys/uio.h>
+
+#define BUF_SIZE 100
+
+int main(int argc, char *argv[])
+{
+    struct iovec vec[2];
+
+    char buf1[BUF_SIZE]={0,};
+    char buf2[BUF_SIZE]={0,};
+    int str_len;
+
+    vec[0].iov_base = buf1;
+    vec[0].iov_len = 5;
+    vec[1].iov_base = buf2;
+    vec[1].iov_len = BUF_SIZE;
+
+    str_len = readv(0,vec,2);
+    printf("Read bytes: %d\n",str_len);
+    printf("First message: %s\n",buf1);
+    printf("Second message: %s\n",buf2);    
+}
+```
