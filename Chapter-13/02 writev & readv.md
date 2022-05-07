@@ -79,3 +79,5 @@ int main(int argc, char *argv[])
     printf("Second message: %s\n",buf2);    
 }
 ```
+## 출력
+![Example3-result(1)](https://user-images.githubusercontent.com/79188587/167244355-fd88056a-d27c-461f-865a-df034de97109.PNG)
