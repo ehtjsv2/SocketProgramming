@@ -10,7 +10,6 @@
 
 ##### 만약 TTL을 64로 설정한다면..
 ```c
-
 int send_sock;
 int time_live=64;
 - - - -
