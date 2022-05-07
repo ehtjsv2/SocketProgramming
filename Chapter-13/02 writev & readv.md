@@ -27,17 +27,19 @@ struct iovec
 int main(int argc, char* argv[])
 {
     struct iovec vec[2];
-    char buf1[] = "ABCDEFG";
-    char buf2[] = "1234567";
+    char buf1[] = "ABCDEFG"; // 버퍼1
+    char buf2[] = "1234567"; // 버퍼2
     int str_len;
 
-    vec[0].iov_base = buf1;
-    vec[0].iov_len = 3;
-    vec[1].iov_base = buf2;
+    vec[0].iov_base = buf1; // iovec vec[0]의 버퍼 주소 설정
+    vec[0].iov_len = 3; // iovec vec[0]의 버퍼 크기 설정
+    vec[1].iov_base = buf2; 
     vec[1].iov_len = 4;
 
-    str_len = writev(1, vec, 2);
+    str_len = writev(1, vec, 2); // 1(console 의 output 디스크립터), vec버퍼, 크기2
     puts("");
     printf("Write bytes: %d\n",str_len);
 }
 ```
+## 출력
+![image](https://user-images.githubusercontent.com/79188587/167243254-fea9a944-9456-4912-affd-54be0cb0cf7f.png)
