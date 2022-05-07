@@ -12,8 +12,22 @@
 ```c
 int send_sock;
 int time_live=64;
-- - - -
+/////////////////
 send_sock =socket(PF_INET, SOCK_DGRAM, 0);
 setsockopt(send_sock, IPPROTO_TP, IP_MULTICAST_TTL, (void*)&time_live, sizeof(time_live));
-- - - -
+/////////////////
+```
+## 멀티캐스트 그룹으로 가입 방법
+> * 또한 소켓 옵션설정으로 이루어진다.
+> * 관련 프로토콜 레벨은 IPPROTO_IP이고 옵션이름은 IP_ADD_MEMBERSHIP이다.
+
+#### * 가입 예시
+```c
+int recv_sock;
+struct ip_mreq join_adr;
+/////////////////
+recv_sock = socket(PF_INET, SOCK_DGRAM,0);
+/////////////////
+join_adr.imr_multiaddr.s_addr = "멀티캐스트 그룹의 주소정보";
+jotin_adr.imr_ interface.s_addr= "그룹에 가입할 호스트의 주소정보";
 ```
