@@ -30,4 +30,15 @@ recv_sock = socket(PF_INET, SOCK_DGRAM,0);
 /////////////////
 join_adr.imr_multiaddr.s_addr = "멀티캐스트 그룹의 주소정보";
 jotin_adr.imr_ interface.s_addr= "그룹에 가입할 호스트의 주소정보";
+setsockopt(recv_sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (void*)&join_adr, sizeof(join_adr));
+/////////////////
+```
+
+## ip_mreq 구조체 변수
+```c
+struct ip_mreq
+{
+  struct in_addr imr_multiaddr; // 가입할 그룹의 ip주소
+  struct in_addr imr_interface; // 가입하는 소켓이 속한 호스트의 ip주소 // INADDR_ANY 도 가능
+}
 ```
