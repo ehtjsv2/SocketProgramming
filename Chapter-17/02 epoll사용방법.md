@@ -44,7 +44,7 @@ epoll_ctl(epfd, EPOLL_CTL_ADD, sockfd, &event);
 ```
 * 현재 배우는 과정에서는 EPOLLIN 이외에 EPOLLET 또는 EPOLLONESHOT 정도 사용한다.
 
-###epoll_wait
+### epoll_wait
 ```c
 int epoll_wait(int epfd, struct epoll_evnet * events, int amxevents, int timeout);
 ```
