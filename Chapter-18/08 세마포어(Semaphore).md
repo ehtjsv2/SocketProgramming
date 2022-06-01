@@ -40,8 +40,8 @@ sem_post(&sem); // 다른곳의 wait 블로킹을 풀게하기위해.
 
 void* read(void *arg);
 void* accu(void *arg);
-static sem_t sem_one;
-static sem_t sem_two;
+static sem_t sem_one; // accu의 실행여부를 담당
+static sem_t sem_two; // read의 실행여부를 담당
 static int   num;
 
 int main(int argc, char *argv[])
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
   pthread_t id_t1, id_t2;
 
   sem_init(&sem_one, 0, 0);
-  sem_init(&sem_two, 0, 1);
+  sem_init(&sem_two, 0, 1); // read를 먼저 실행하게 하겠다는 의미에서 초기화 값 1
 
   pthread_create(&id_t1, NULL, read, NULL);
   pthread_create(&id_t2, NULL, accu, NULL);
@@ -70,9 +70,9 @@ void* read(void *arg)
     fputs("Input num: ", stdout);
 
 
-    sem_wait(&sem_two);
+    sem_wait(&sem_two); // 실행되면서 0으로 만들고 다음에는 블로킹에 빠짐
     scanf("%d", &num);
-    sem_post(&sem_one);
+    sem_post(&sem_one); // accu의 블로킬을 해제
   }
   return NULL;
 }
@@ -82,9 +82,9 @@ void* accu(void *arg)
   int sum = 0, i;
 
   for (i = 0; i < 5; i++) {
-    sem_wait(&sem_one);
+    sem_wait(&sem_one); // 실행되면서 0으로 만들고 다음에는 블로킹에 빠짐
     sum += num;
-    sem_post(&sem_two);
+    sem_post(&sem_two); // read의 블로킹을 
   }
   printf("Result: %d \n", sum);
   return NULL;
